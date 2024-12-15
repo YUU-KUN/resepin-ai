@@ -1,7 +1,7 @@
 {
   "name": "resepin-api",
   "version": "1.0.0",
-  "description": "A scalable REST API starter project with Node.js, Sequelize, MongoDB, and Docker.",
+  "description": "Use Leftover Ingredients, Get Inspired, Delicious Creations Come to Life!",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
