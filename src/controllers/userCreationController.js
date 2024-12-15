@@ -7,12 +7,12 @@ const UserCreation = db.UserCreation;
 exports.getUserCreations = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { isFavorite } = req.body;
+        const { isFavorite } = req.query;
 
         const userCreations = await UserCreation.findAll({
             where: {
                 userId,
-                ...(isFavorite !== undefined && { isFavorite }) // Only add isFavorite to the query if it's defined
+                isFavorite: isFavorite !== undefined ? isFavorite : 0 // Only include isFavorite if it's defined
             }
         });
 
@@ -21,6 +21,25 @@ exports.getUserCreations = async (req, res) => {
         console.log(error);
 
         return errorResponse(res, 'User creations retrieval failed', error);
+    }
+};
+
+exports.favoriteUserCreation = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const { id } = req.query;
+        const userCreation = await UserCreation.findOne({
+            where: { id, userId }
+        });
+        if (!userCreation) {
+            return errorResponse(res, 'User creation not found', null, 404);
+        }
+        userCreation.isFavorite = !userCreation.isFavorite;
+        await userCreation.save();
+        return successResponse(res, 'User creation favorited successfully', userCreation);
+    } catch (error) {
+        console.log(error);
+        return errorResponse(res, 'User creation favoriting failed', error);
     }
 };
 
