@@ -1,0 +1,29 @@
+{
+  "name": "resepin-api",
+  "version": "1.0.0",
+  "description": "A scalable REST API starter project with Node.js, Sequelize, MongoDB, and Docker.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "sequelize db:seed:all"
+  },
+  "author": "Indra Wahyu",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/vertexai": "^1.9.2",
+    "@google/generative-ai": "^0.21.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.5",
+    "sequelize": "^6.37.5",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
+  }
+}
